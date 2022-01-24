@@ -187,6 +187,14 @@ def checksqr(row, col):
 
 
 def gaptester(row, col):
+    if (cantgoright or cantgoleft) and not cantgodown and not cantgoup:
+        if board[row+1][col] == board[row-1][col] != '_': #test fot gap streak
+            if input("would you to get a hint? y for YES n for NO").lower() == 'y':
+                print(f"there is a wining play for {board[row+1][col]} at {row + 1}, {col + 1}")
+    if (cantgoup or cantgodown) and not cantgoleft and not cantgoright:
+        if board[row][col+1] == board[row][col-1] != '_': # test for win streak
+            if input("would you to get a hint? y for YES n for NO").lower() == 'y':
+                print(f"there is a wining play for {board[row][col+1]} at {row + 1}, {col + 1}")
     if not cantgoleft and not cantgoright and not cantgoup and not cantgodown:  # checks if cell is in middle of 3 simmilar
         if board[row+1][col] == board[row-1][col] != '_': #test fot gap streak
             if input("would you to get a hint? y for YES n for NO").lower() == 'y':
@@ -197,11 +205,11 @@ def gaptester(row, col):
         if board[row+1][col+1] == board[row-1][col-1] != '_': #test fot gap streak
             print("tested")
             if input("would you to get a hint? y for YES n for NO").lower() == 'y':
-                print(f"there is a wining play for {board[row-1][col-1]} at {row + 1}, {col + 1}")
+                print(f"there is a wining play for {[row+1][col+1]} at {row + 1}, {col + 1}")
         if board[row-1][col+1] == board[row+1][col-1] != '_': # test for gap streak
             if input("would you to get a hint? y for YES n for NO").lower() == 'y':
-                print(f"there is a wining play for {board[row - 1][col - 1]} at {row + 1}, {col + 1}")
-                
+                print(f"there is a wining play for {board[row-1][col+1]} at {row + 1}, {col + 1}")
+
 def whosTurn ():
     global turn
     if turn == False:
